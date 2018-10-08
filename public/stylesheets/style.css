@@ -1,0 +1,27 @@
+
+.for {
+  margin-left: 600px}
+
+.sss { float:left;
+  margin: 10px;
+background-color: gray;
+}
+
+.content {
+  font-size : 300%;
+  border: 2px solid black;
+}
+
+.author {
+  font-size: 150%;
+}
+
+.title {
+  font-size: 130%;
+}
+
+
+@keyframes animation {
+    from {background-color: white;}
+    to {background-color: gray;}
+}
