@@ -1,274 +1,4 @@
-var close = false;
-
-function unseeThePopUpWindow() {
-  let create = document.getElementById('p233');
-  console.log(create);
-  if(create.style.color == "red"){
-    create.style.color = "black";
-  }
-  else{
-    create.style.color = "red";
-  }
-  create.innerHTML = "gggg";
-}
-
-class target1 {
-
-  constructor(text, element){
-    this.text = text;
-    this.element = element
-    //console.log(this.element);
-    this.innertext = this.element.innerHTML;
-    //console.log(this.innertext);
-    //console.log(this.text);
-  }
-
-  click(){
-    var text = this.text;
-    this.element.addEventListener("click", function(){
-      this.innerHTML = text;
-    });
-  }
-
-  hover(){
-    var text = this.text;
-    var innertext = this.innertext;
-    this.element.addEventListener("mouseover", function(){
-      this.innerHTML = text;
-    });
-    this.element.addEventListener("mouseout", function(){
-      this.innerHTML = innertext;
-    });
-  }
-}
-
-class target2 {
-
-  constructor(element){
-    this.element = element
-    this.innertext = this.element.innerHTML;
-  }
-
-  hover(){
-    var open = true;
-    var refreshIntervalId;
-    this.element.addEventListener("mouseover", function(){
-      //this.style.color = "red";
-      //this.style.backgroundColor = "gray";
-      this.style.animation = "animation 1s infinite"
-      //var backgroundColor = this.style.backgroundColor;
-      var object = this
-      open = true;
-      //terminate the animation after 1 second
-      refreshIntervalId = setInterval(function(){
-        //if(open){
-        object.style.animation = ""
-        object.style.backgroundColor = "gray"
-        open = false;
-        //  }
-      }, 1000);
-    });
-    this.element.addEventListener("mouseout", function(){
-      //this.style.color = "black";
-      this.style.animation = ""
-      this.style.backgroundColor = "white";
-      open = false;
-      clearInterval(refreshIntervalId);
-    });
-  }
-}
-
-/*
-var target1 = new target("skr", document.getElementById("p1"));
-target1.hover();
-target1.click();
-var target1 = new target("skr", document.getElementById("p2"));
-target1.hover();
-target1.click();
-var target1 = new target("skr", document.getElementById("p3"));
-target1.hover();
-target1.click();
-*/
-
-var divs = document.getElementsByTagName('div');
-
-// find out all those divs having class C
-for(var i = 0; i < divs.length; i++)
-{
-  if (divs[i].getAttribute('class') === "col-sm-4")
-  {
-    //divs[i].style.border= "1px solid";
-    // put the divs having class C inside container div
-    console.log(divs[i]);
-    var b = new target1("Skr~", divs[i]);
-    var c = new target2(divs[i])
-    b.hover();
-    c.hover();
-  }
-}
-
-
-var mySelf = " Hey there, I am David He, grown up in China, and came to australia for uni when I was 18. Major in Computing";
-var myAchivement = "These are the apps I have done:";
-var myFuturePlan = "I am going to do these in the future";
-
-var p1 = document.getElementById("p1")
-var p2 = document.getElementById("p2")
-var p3 = document.getElementById("p3")
-var inflater = document.getElementById("inflated")
-var defaultText = document.createElement("div")
-inflater.innerHTML = mySelf;
-
-var loveMe = document.getElementById("loveMe")
-
-var fuckMe = document.getElementById("fuckMe")
-
-p1.addEventListener("mouseover", function(){
-  //var para = document.createElement("div")
-  //var node = document.createTextNode(mySelf);
-  //para.appendChild(node);
-  //let body = document.body;
-  //body.appendChild(para);
-  //inflater.innerHTML = splitSentence(mySelf);
-  splitSentence(inflater, mySelf);
-})
-
-p2.addEventListener("mouseover", function(){
-  //inflater.innerHTML = myAchivement;
-  splitSentence(inflater, myAchivement);
-  var line_breaker = document.createElement("br")
-  inflater.appendChild(line_breaker);
-  var superLink = document.createElement("a");
-  superLink.setAttribute('href', "https://play.google.com/store/apps/details?id=com.davidheskr.votingmachine");
-  superLink.innerHTML = "Voting Machine"
-  inflater.appendChild(superLink);
-})
-
-p3.addEventListener("mouseover", function(){
-  //inflater.innerHTML = myFuturePlan;
-  splitSentence(inflater, myFuturePlan);
-})
-
-function splitSentence(inflater, string){
-  var res = string.split(" ");
-  var i;
-  inflater.innerHTML = ""
-  for(i=0;i<res.length;i++){
-    var wordTemplate = document.createElement("span")
-    //wordTemplate.innerHTML = res[i] + " "
-    wordTemplate.innerHTML = res[i]
-    var hover = new target2(wordTemplate);
-    hover.hover();
-    var space = document.createElement("span")
-    space.innerHTML = " "
-    inflater.appendChild(wordTemplate)
-    inflater.appendChild(space)
-  }
-}
-
-function getData(){
-
-  var inflated = document.getElementById("comment_inflated");
-  var textHtml = ""
-  if(close){
-    inflated.innerHTML = textHtml;
-    close = false;
-    return;
-  }
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      var responseText = this.responseText;
-      console.log("responseText is:" + responseText);
-      //var comment_array = responseText.split("/")
-      var comment_array = JSON.parse(responseText);
-      comment_array.forEach(function(comment){
-        textHtml = textHtml + "<div class = author>Author: " + comment.author + "</div>";
-        textHtml = textHtml + "<div class = title>Title: " + comment.title + "</div>";
-        textHtml = textHtml + "<div class = content>" + comment.content + "</div>";
-        textHtml += "<br><br><br>"
-      })
-      close = true;
-      inflated.innerHTML = textHtml;
-    }
-  };
-  xmlhttp.open("GET", "/get-data", true);
-  xmlhttp.send();
-}
-
-function react(input){
-  var path = ""
-  var response = ""
-
-  if(input == "love"){
-    path = "/loveme"
-    responseHead = "I have been loved "
-    responseEnd = " times, Skr~,\n thank you bro!!"
-  }
-
-  else{
-    path = "/fuckme"
-    responseHead = "I have been fucked "
-    responseEnd = " times, Skr~,\n sorry about that, I will do better next time!!"
-  }
-
-  var inflated = document.getElementById("inflater2");
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      var responseText = this.responseText;
-      inflated.innerHTML = responseHead + responseText + responseEnd;
-    }
-  };
-  xmlhttp.open("GET", path, true);
-  xmlhttp.send();
-}
-
-function submit_comment(title, content, author){
-  console.log("666666666");
-  console.log(title + content + author);
-}
-var request = new XMLHttpRequest();
-var url = "/insert";
-request.onreadystatechange = function () {
-  console.log("status: " + this.readyState + ";;;" + this.status);
-  if (this.readyState == 4 && this.status == 200) {
-    //var jsonData = JSON.parse(this.response);
-    console.log("response:::: "+ this.responseText);
-    getData()
-  }
-};
-
-contactForm = document.getElementById("contact-form");
-contactForm.addEventListener("submit", function(event) {
-  event.preventDefault();
-  request.open("POST", url, true);
-  request.setRequestHeader("Content-Type", "application/json");
-  var title =  document.getElementById("title").value;
-  var content = document.getElementById("content").value;
-  var author = document.getElementById("author").value;
-  if(test(title, content, author)){
-    var data = JSON.stringify({"title": title, "content": content, "author": author});
-    request.send(data);
-    document.getElementById("title").value = ""
-    document.getElementById("content").value = ""
-    document.getElementById("author").value = ""
-  }
-});
-
-var origionalText = ""
-function mouseDown(elem){
-  origionalText = elem.value;
-  elem.style.backgroundColor = "gray"
-  console.log(elem.innerHTML);
-  elem.value = "Skr~"
-}
-
-function mouseUp(elem){
-  elem.value = origionalText;
-  elem.style.backgroundColor = "white"
-}
-
+var restaurantID = document.getElementById("id").innerHTML
 function test (title, content, author){
   if(title == "" || content == "" || author == ""){
     if(title == ""){
@@ -285,4 +15,115 @@ function test (title, content, author){
     }
   }
   return true;
+}
+
+var table_open = true;
+function new_item(){
+  var table_inflater = document.getElementById("table_inflater");
+  if(table_open){
+    var innerHTML = "<form class = 'col-sm-6' id = 'inflated'>" +
+    "<label class = 'col-sm-4' for = 'name'>Name</label>" +
+    "<input class = 'col-sm-6' type='text' id = 'name' name = 'name'>" +
+    "<label class = 'col-sm-4' for = 'ingredients'>Ingredients</label>" +
+    "<input class = 'col-sm-6' type='text' id = 'ingredients' name = 'ingredients'>" +
+    "<label class = 'col-sm-4' for = 'price'>Price</label>" +
+    "<input class = 'col-sm-6' type= 'text' id = 'price' name = 'price'>" +
+    "<input class = 'col-sm-6' style= 'border: 3px solid green' type= 'submit' id = 'submit' value = 'submit'>" +
+    "</form>"
+
+    table_inflater.innerHTML = innerHTML;
+    var inflatedForm = document.getElementById("inflated")
+    inflatedForm.addEventListener("submit", function(event) {
+      var request = new XMLHttpRequest();
+      request.onreadystatechange = function () {
+        console.log("status: " + this.readyState + ";;;" + this.status);
+        if (this.readyState == 4 && this.status == 200) {
+          //var jsonData = JSON.parse(this.response);
+          console.log("response:::: "+ this.response);
+        }
+      };
+      event.preventDefault();
+      var url = "/insert_item"
+      request.open("POST", url, true);
+      request.setRequestHeader("Content-Type", "application/json");
+      var title =  document.getElementById("name").value;
+      var content = document.getElementById("ingredients").value;
+      var author = document.getElementById("price").value;
+      if(test(title, content, author)){
+        var data = JSON.stringify({"name": title, "ingredients": content, "price": author});
+        request.send(data);
+        document.getElementById("name").value = ""
+        document.getElementById("ingredients").value = ""
+        document.getElementById("price").value = ""
+      }
+    });
+    table_open = false;
+  }
+}
+
+function show_items(){
+  var infalter = document.getElementById('table_inflater');
+  if(table_open){
+    var request = new XMLHttpRequest();
+    var url = "/get-data/" + restaurantID
+    request.open("GET",url,true);
+    var textHtml = ""
+    request.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var responseText = this.responseText;
+        console.log("responseText is:" + responseText);
+        //var comment_array = responseText.split("/")
+        var item_array = JSON.parse(responseText);
+        item_array.forEach(function(item){
+          textHtml = textHtml + "<div class = author>Name: " + item.name + "</div>";
+          textHtml = textHtml + "<div class = title>ingredients: " + item.ingredients + "</div>";
+          textHtml = textHtml + "<div class = content>price:" + item.price + "</div>";
+          textHtml = textHtml + "<img src = " + "/images/"+restaurantID + "/" + item.name +".png" + " width='200' height='333'>";
+          textHtml += "<br><br><br>"
+        })
+        infalter.innerHTML = textHtml;
+      }
+    };
+    request.send();
+    table_open = false;
+  }
+  else{
+    infalter.innerHTML = ""
+    table_open = true;
+  }
+}
+var last_orders = []
+var Orders = document.getElementById('received_orders');
+//Orders.addEventListener("click", listen_to_orders);
+setInterval(listen_to_orders,3000);
+function listen_to_orders(){
+  var url = "/listen_orders/"+restaurantID
+  var request = new XMLHttpRequest();
+  request.open("GET", url, true);
+  request.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var received_orders = this.responseText;
+      var parsed_orders = JSON.parse(received_orders);
+      var increased_length = parsed_orders.length - last_orders.length;
+      if(parsed_orders.length > last_orders.length){
+      //  console.log("parsed_orders:"+parsed_orders);
+      //  parsed_orders.forEach(function(order_list){
+        for (var i = last_orders.length; i < parsed_orders.length; i++){
+          var order_list = parsed_orders[i];
+          var parsed_order_list = JSON.parse(order_list)
+          console.log("order_list:"+parsed_order_list);
+          Orders.innerHTML = Orders.innerHTML + "<br>new order<br>";
+          Orders.innerHTML = Orders.innerHTML + "the table is "+ parsed_order_list.table + "<br>";
+          parsed_order_list.order.forEach(function(order){
+            console.log("order:"+order);
+            Orders.innerHTML = Orders.innerHTML + "name:    " + order.name
+            Orders.innerHTML = Orders.innerHTML + "price:   " + order.price + "<br>"
+          })
+          //Orders.innerHTML = Orders.innerHTML + + "<br>";
+        }
+        last_orders = parsed_orders;
+      }
+    }
+  };
+  request.send();
 }

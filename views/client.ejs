@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>New Project</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/style.css"
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <h1>your are in restaurant</h1>
+  <h1 id = "restaurantID"><%=restaurantID%><h1>
+  <h1 id = "tableID"><%=tableID%><h1>
+  <div id = "orders" ></div>
+  <div id = "total_price">Total Price</div>
+  <button onclick="submit_order()">submit order</button>
+  <button id = "show_items" onclick="show_items()">show menu</button>
+  <div id = "table_inflater"></div>
+  <script src="/javascripts/client.js"></script>
+</body>
+</html>

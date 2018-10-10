@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>New Project</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -10,54 +10,23 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-
-<div class="container">
-  <h1 style="text-align: center; font-size : 500%">Welcome to DavidHeSkr.com!</h1>
-  <br>
-  <div id = "header" style="border: 1px solid">
-  <h2 style="text-align: center">happy coding, full stack development</h2>
-  <h3 style="text-align: center">快乐代码  全栈开发 </h3>
-  </div>
-  <br><br>
-  <div class="row">
-    <div id="p1" class="col-sm-4" style="text-align: center; font-size : 300%;border: 1px solid;box-shadow: 5px 10px #888888;">Who I Am</div>
-    <div id="p2" class="col-sm-4" style="text-align: center; font-size : 300%;border: 1px solid;box-shadow: 5px 10px #888888;">My Achievement</div>
-    <div id="p3" class="col-sm-4" style="text-align: center; font-size : 300%;border: 1px solid;box-shadow: 5px 10px #888888;">My Plan</div>
-  </div>
-  <br><br>
-  <div id = "inflated" style="font-size : 300%"></div>
-<br><br><br><br><br><br><br><br><br>
-<input class="col-sm-6" type="submit" value="fuckme" style="font-size : 300%;border: 2px solid;" onclick="react('fuck')" onmousedown="mouseDown(this)" onmouseup="mouseUp(this)">
-<input class="col-sm-6" type="submit" value="loveme" style="font-size : 300%;border: 2px solid;" onclick="react('love')" onmousedown="mouseDown(this)" onmouseup="mouseUp(this)">
-<p class = "col-sm-12" style="font-size : 300%" id = "inflater2"></p>
-<br><br><br><br><br>
-<button onclick="getData()" style="margin: 0 auto; width: 30%;border: 3px solid green;
-padding: 10px;">get comments</button>
-<div id = "comment_inflated">
-</div>
-<p style="font-size : 300%; margin-left : 400px"><%=loveme%></p>
-<!--<form action="/insert" method="post">-->
-<form id = "contact-form">
-        <div class="input">
-            <label for="title" class="col-sm-2">Title</label>
-            <input class="col-sm-6" type="text" id="title" name="title">
-        </div>
-        <br><br>
-        <div class="input">
-            <label for="content" class="col-sm-2">Content</label>
-            <input class="col-sm-6" type="text" id="content" name="content">
-        </div>
-        <br><br>
-        <div class="input" class="col-sm-6">
-            <label for="author" class="col-sm-2">Author</label>
-            <input class="col-sm-6" type="text" id="author" name="author">
-        </div>
-        <br><br>
-        <button type="submit" style="margin: 0 auto; width: 50%;border: 3px solid green;
-    padding: 10px;">LEAVE A COMMENT</button>
+  <h1>Here is restaurant</h1>
+  <h1 id = 'id'><%=id%></h1>
+  <h2>received orders<h2><br>
+    <div id = 'received_orders'></div>
+    <button id = "show_items" onclick="show_items()">show items</button>
+    <div id = "table_inflater"></div>
+    <form action="<%=upload%>" method="post" enctype="multipart/form-data">
+      <label class = 'col-sm-4' for = 'name'>Name</label>
+      <input class = 'col-sm-6' type='text' id = 'name' name = 'name'>
+      <label class = 'col-sm-4' for = 'ingredients'>Ingredients</label>
+      <input class = 'col-sm-6' type='text' id = 'ingredients' name = 'ingredients'>
+      <label class = 'col-sm-4' for = 'price'>Price</label>
+      <input class = 'col-sm-6' type= 'text' id = 'price' name = 'price'>
+      <input type="file" name="avatar" value = "pick up an image"/>
+      <input class = 'col-sm-6' style= 'border: 3px solid green' type= 'submit' id = 'submit' value = 'submit'>
     </form>
-</div>
+
 <script src="/javascripts/controller.js"></script>
 </body>
 </html>
