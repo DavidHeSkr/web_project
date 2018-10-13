@@ -1,25 +1,57 @@
 
-.for {
-  margin-left: 600px}
-
-.sss { float:left;
-  margin: 10px;
-background-color: gray;
+.price {
+  font-size : 130%;
+  color: gray;
 }
 
-.content {
-  font-size : 300%;
-  border: 2px solid black;
+.name {
+  font-size: 200%;
 }
 
-.author {
-  font-size: 150%;
-}
-
-.title {
+.ingredients {
   font-size: 130%;
 }
 
+.item {
+  border: 2px solid black;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.image {
+  position : relative;
+  border: 1px solid gray;
+  border-radius: 4px;
+  padding: 5px;
+  display: block;
+}
+
+.content {
+  border: 1px solid gray;
+}
+
+.order {
+  border: 1px solid gray;
+}
+
+.table_number {
+  color: blue;
+}
+
+.new_order{
+  border: 2px solid black;
+}
+
+#received_orders {
+  border: 1px solid gray;
+}
+
+#table_inflater {
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 50%;
+  text-align: left;
+}
 
 @keyframes animation {
     from {background-color: white;}

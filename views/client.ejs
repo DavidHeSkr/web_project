@@ -10,14 +10,19 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <h1>your are in restaurant</h1>
-  <h1 id = "restaurantID"><%=restaurantID%><h1>
-  <h1 id = "tableID"><%=tableID%><h1>
+  <div class = "container">
+  <span style="font-size: 350%;">Welcome to restaurant: </span>
+  <span id = "restaurantID" style="font-size: 350%;"><%=restaurantID%></span><br>
+  <span style="font-size: 250%;">table: </span>
+  <span id = "tableID" style="font-size: 250%;"><%=tableID%></span>
+  <br>
+  <button id = "show_items" onclick="show_items()" style = "width: 60%; font-size: 250%; border: 2px solid black;">show menu</button>
+  <br><br>
+  <ol id = "table_inflater" type = '1'></ol>
   <div id = "orders" ></div>
-  <div id = "total_price">Total Price</div>
-  <button onclick="submit_order()">submit order</button>
-  <button id = "show_items" onclick="show_items()">show menu</button>
-  <div id = "table_inflater"></div>
+  <div id = "total_price" style="font-size: 300%;">Total Price: 0</div>
+  <button onclick="submit_order()" style = "width: 60%; font-size: 250%; border: 2px solid black;">submit order</button>
+</div>
   <script src="/javascripts/client.js"></script>
 </body>
 </html>

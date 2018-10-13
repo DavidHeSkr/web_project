@@ -16,14 +16,14 @@ function show_items(){
         //var comment_array = responseText.split("/")
         var item_array = JSON.parse(responseText);
         item_array.forEach(function(item){
-          textHtml = textHtml + "<div class= parent>"
-          textHtml = textHtml + "<div class = author>Name:" + item.name + "</div>";
-          textHtml = textHtml + "<div class = title>Ingredients:" + item.ingredients + "</div>";
-          textHtml = textHtml + "<div class = content>Price:" + item.price + "</div>";
-          textHtml = textHtml + "<img src = " + "/images/"+restaurantID + "/" + item.name +".png" + " width='200' height='333'>";
-          textHtml = textHtml + "<button onclick = 'addorder(this)' >" + "orderThis" + "</button>";
-          textHtml = textHtml + "</div>"
-          textHtml += "<br><br><br>"
+          textHtml = textHtml + "<li class = item>"
+          textHtml = textHtml + "<div class = name>Name:" + item.name + "</div>";
+          textHtml = textHtml + "<div class = ingredients>Ingredients:" + item.ingredients + "</div>";
+          textHtml = textHtml + "<div class = price>Price:" + item.price + "</div>";
+          textHtml = textHtml + "<img class = image src = " + "/images/"+restaurantID + "/" + item.name +".png" + " width='200' height='200'>";
+          textHtml = textHtml + "<button onclick = 'addorder(this)' style = 'width: 40%; height:40px; color: green; font-size : 130%; border: 3px solid green;' >" + "Order This" + "</button>";
+          textHtml = textHtml + "</li>"
+          textHtml += "<br>"
         })
         infalter.innerHTML = textHtml;
       }
@@ -42,7 +42,7 @@ function addorder(element){
   var name = nodeArray[0].innerHTML;
   var ingredients = nodeArray[1].innerHTML;
   var price = nodeArray[2].innerHTML;
-  order.addInner("<div>" + "<div class = order_name>" + name + "</div>" + "<div class = order_ingredients>" + ingredients + "</div>"+"<div class = order_price>" + price+"</div>" + " <button onclick = 'deleteThis(this)' > DELETE </button><br></div>");
+  order.addInner("<div class = order>" + "<div class = name>" + name + "</div>" + "<div class =ingredients>" + ingredients + "</div>"+"<div class =price>" + price+"</div>" + " <button onclick = 'deleteThis(this)' style = 'width: 20%; height:30px; border: 2px solid red; color: red'> DELETE </button><br></div>");
   total_price += parseFloat(get_price(price));
   update_price();
   console.log(order);
